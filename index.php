@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <title>DownShift_Records</title>
+    <title>WEBSITE_TITLE</title>
 </head>
 <body class="container">
     
@@ -15,23 +15,20 @@
     <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Yabontiap v1</a>
+            <a class="navbar-brand" href="index.php">WEBSITE_TITLE</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.php">Catégories</a>
+                <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="recettes.php">Recettes</a>
+                <a class="nav-link" href="recettes.php">Chansons</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="recettes_tableau.php">Recette_tableau</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link active" href="categories_tableau.php">RCatégories tableau</a>
+                <a class="nav-link" href="recettes_tableau.php">Artistes/Groupes</a>
                 </li>
             </ul>
             </div>
@@ -41,20 +38,20 @@
 
 
     <main>
-        <h1 class="mycolor">Les CD</h1>
+        <h1 class="mycolor">Les CDs</h1>
 
         <div id="zone_cartes" class="row row-cols-3">
 
             <?php
-            foreach ($categories as $categorie) {
+            foreach ($cds as $cd) {
                 ?>
 
                 <!--Les cartes-->
-                <a href="recettes.php?id_categorie=<?= $categorie['id'] ?>" class="col mb-3">
+                <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
                     <div class="card" style="width: 18rem;">
-                        <img src="<?= "image/" . $categorie['image'] ?>" class="card-img-top" alt="">
+                        <img src="<?= "image/" . $cd['image'] ?>" class="card-img-top" alt="">
                         <div class="card-body bg-primary">
-                            <h5><?= $categorie['nom'] ?></h5>
+                            <h5><?= $cd['nom'] ?></h5>
                         </div>
                     </div>
                 </a>                
