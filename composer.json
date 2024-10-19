@@ -1,0 +1,14 @@
+{
+    "name": "laura/downshift_records",
+    "authors": [
+        {
+            "name": "Laura Nunez"
+        },
+        {
+            "name": "Léa Despré-Hildevert"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.14"
+    }
+}
