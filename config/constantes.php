@@ -7,7 +7,7 @@ define('DB_USER', 'ldhildevert_bd');
 define('DB_PASSWORD', 'ldhildevert_bd');
 
 //Définition des contantes pour les tables
-define('PREFIX', 'redord_');
+define('PREFIX', 'record_');
 
 //Constantes pour la partie vue
 define('WEBSITE_TITLE', 'Downshift Records');
