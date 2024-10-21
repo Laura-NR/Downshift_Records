@@ -8,3 +8,5 @@ require_once 'config/constantes.php';
 
 //Ajout du fichier de connexion à la base de données
 require_once 'config/connexion.php';
+
+//Code pour initialiser twig

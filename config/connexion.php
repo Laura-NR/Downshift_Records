@@ -1,11 +1,26 @@
 <?php
-        //Connexion à la base de données en pdo
-        $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" .DB_NAME . ", " . DB_USER . ", " . DB_PASSWORD . "");
+try {
+  
+    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
 
-        $sql = "SELECT * FROM record_cd";
-        $pdoStatement = $pdo->prepare($sql);
-        $pdoStatement->execute();
+ 
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $cd = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+
+    $sql = "SELECT * FROM record_Cd";
+    $pdoStatement = $pdo->prepare($sql);
+    $pdoStatement->execute();
+
+
+    $cd = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+
+  
+    print_r($cd);
+    
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 
         
