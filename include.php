@@ -10,3 +10,4 @@ require_once 'config/constantes.php';
 require_once 'config/connexion.php';
 
 //Code pour initialiser twig
+require_once 'config/twig.php';
