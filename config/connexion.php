@@ -13,9 +13,6 @@ try {
 
 
     $cd = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-
-  
-    print_r($cd);
     
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();

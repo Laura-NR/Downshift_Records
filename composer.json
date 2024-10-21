@@ -7,8 +7,5 @@
         {
             "name": "Léa Despré-Hildevert"
         }
-    ],
-    "require": {
-        "twig/twig": "^3.14"
-    }
+    ]
 }

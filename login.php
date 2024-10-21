@@ -38,30 +38,33 @@
 
 
     <main>
-        <h1 class="mycolor">Les CDs</h1>
-
-        <div id="zone_cartes" class="row row-cols-3">
-
-            <?php
-            foreach ($cds as $cd) {
-                ?>
-
-                <!--Les cartes-->
-                <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?= "image/" . $cd['image'] ?>" class="card-img-top" alt="">
-                        <div class="card-body bg-primary">
-                            <h5><?= $cd['nom'] ?></h5>
-                        </div>
-                    </div>
-                </a>                
-
-            <?php } ?>
-
-        </div>
+    <form action="process_login.php" method="post">
+  <div class="mb-3">
+    <label for="username" class="form-label">Nom d'Utilisateur</label>
+    <input type="text" class="form-control" id="username" name="username" />
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Adresse Mail</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      aria-describedby="emailHelp"
+    />
+    <div id="emailHelp" class="form-text">
+      We'll never share your email with anyone else.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Mot de Passe</label>
+    <input type="password" class="form-control" id="password"  name="password" />
+  </div>
+  <button type="submit" class="btn btn-primary">Se connecter</button>
+</form>
     </main>
     <footer class="text-body-secondary py-5">
-        <p>&copy; constant("WEBSITE_TITLE") -  'now'|date('Y') </p>
+    <p>&copy; constant("WEBSITE_TITLE") -  'now'|date('Y') </p>
     </footer>
 
 </body>

@@ -25,9 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Préparation de la requête
-    $sql = "INSERT INTO " . PREFIX . "user (username, email, password) VALUES (:username, :email, :password)";
+    $sql = "INSERT INTO " . PREFIX . "utilisateur (username, email, mdp) VALUES (:username, :email, :mdp)";
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->execute([$username, $email, $hashedPassword]);
+    $pdoStatement->execute([
+        ':username' => $username,
+        ':email' => $email,
+        ':mdp' => $hashedPassword
+    ]);
 
     // Redirection vers la page de connexion
     echo "Compte créé avec succès ! Vous pouvez vous connecter<br>";

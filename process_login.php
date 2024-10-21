@@ -12,12 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    $sql = "SELECT * FROM " . PREFIX . "user WHERE email = :email";
+    $sql = "SELECT * FROM " . PREFIX . "utilisateur WHERE email = :email";
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->execute(['email' => $email]);
+    $pdoStatement->execute([':email' => $email]);
     $user = $pdoStatement->fetch();
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($user && password_verify($password, $user['mdp'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
