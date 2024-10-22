@@ -7,29 +7,21 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-$sql = "SELECT * FROM " . PREFIX . "Cd";
-$pdoStatement = $pdo->prepare($sql);
-$pdoStatement->execute();
-$cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+if ($_SESSION['username'] !== 'admin') {
+    echo "Vous n'avez pas le droit d'accès à cette page";
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="CSS/styles.css">
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <title>{{ constant('${WEBSITE_TITLE}') }}</title>
+    <title>Ajouter un CD</title>
 </head>
-
-<body class="container">
-
-
-
-    <header>
+<body>
+<header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php">{{ constant('${WEBSITE_TITLE}') }}</a>
@@ -53,29 +45,24 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
         </nav>
     </header>
 
-
     <main>
-        <h1 class="mycolor">Les CDs</h1>
-
-        <div id="zone_cartes" class="row row-cols-3">
-
-            <?php foreach ($cds as $cd) { ?>
-                <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?= "image/" . $cd['image'] ?>" class="card-img-top" alt="<?= $cd['nom'] ?>">
-                        <div class="card-body bg-primary">
-                            <h5><?= $cd['nom'] ?></h5>
-                        </div>
-                    </div>
-                </a>
-            <?php } ?>
-
-        </div>
+        <form action="process_upload.php">
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title">
+            <label for="artist">Artiste</label>
+            <input type="text" name="artist" id="artist">
+            <label for="year">Année</label>
+            <input type="number" name="year" id="year">
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre">
+            <label for="price">Prix</label>
+            <input type="number" name="price" id="price">
+            <label for="cover">Pochette</label>
+            <input type="file" name="cover" id="cover">
+            <label for="chansons">Combien de chansons sont-ils inclus dans le CD ?</label>
+            <input type="number" name="chansons" id="chansons">
+            <button type="submit">Ajouter</button>
+        </form>
     </main>
-    <footer class="text-body-secondary py-5">
-        <p>&copy; <?= constant('WEBSITE_TITLE') ?> - <?= date('Y') ?></p>
-    </footer>
-
 </body>
-
 </html>
