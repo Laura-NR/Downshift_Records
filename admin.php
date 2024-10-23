@@ -63,9 +63,9 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($cds as $cd) { ?>
                 <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
                     <div class="card" style="width: 18rem;">
-                        <img src="<?= "image/" . $cd['image'] ?>" class="card-img-top" alt="<?= $cd['nom'] ?>">
+                        <img src="<?= "images/" . $cd['vignette'] ?>" class="card-img-top" alt="<?= $cd['titre'] ?>">
                         <div class="card-body bg-primary">
-                            <h5><?= $cd['nom'] ?></h5>
+                            <h5><?= $cd['titre'] ?></h5>
                         </div>
                     </div>
                 </a>
