@@ -7,19 +7,19 @@ if (!isset($_SESSION['user_id']) || $_SESSION['username'] !== 'admin') {
     exit;
 }
 
-if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
-    $cd_id = $_GET['id_cd'];
+if (isset($_POST['id_cd']) && is_numeric($_POST['id_cd'])) {
+    $cd_id = $_POST['id_cd'];
 
     $sql = "DELETE FROM " . PREFIX . "Cd WHERE id = :id";
     $pdoStatement = $pdo->prepare($sql);
 
     if ($pdoStatement->execute(['id' => $cd_id])) {
-        header('Location: admin_dashboard.php');
+        header('Location: admin.php');
         exit;
     } else {
         echo "Erreur lors de la suppression du CD.";
     }
 } else {
-    header('Location: admin_dashboard.php');
+    header('Location: admin.php');
     exit;
 }

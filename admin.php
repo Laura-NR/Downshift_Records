@@ -69,9 +69,10 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 </a>
-                <a href="delete_cd.php?id_cd=<?= $cd['id'] ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce CD ?');">
-                    <button class="btn btn-danger">Supprimer CD</button>
-                </a>
+                <form action="delete_cd.php" method="post">
+                    <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
+                    <input type="submit" value="Supprimer CD">
+                </form>
             <?php } ?>
 
         </div>

@@ -58,8 +58,10 @@ if ($_SESSION['username'] !== 'admin') {
             </div>
             <label for="nom">Nom du CD :</label>
             <input type="text" name="nom" id="nom">
-            <label for="vignette">Télécharger la vignete</label>
+            <label for="vignette">Télécharger la vignete (image plus petite) :</label>
             <input type="file" name="vignette" id="vignette">
+            <label for="vignette_large">Télécharger l'aperçu du CD (image plus large) :</label>
+            <input type="file" name="vignette_large" id="vignette_large">
 
             <h2>Ajouter des chansons</h2>
             <div id="song-list"></div>

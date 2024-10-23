@@ -12,7 +12,7 @@ if ($_SESSION['username'] !== 'admin') {
     exit;
 }
 
-// Retrieve form inputs
+
 $nom = $_POST['nom'];
 $auteur = $_POST['auteur'];
 $songs = isset($_POST['songs']) ? $_POST['songs'] : [];
@@ -20,7 +20,6 @@ $durations = isset($_POST['durations']) ? $_POST['durations'] : [];
 
 $targetDir = "images/"; 
 
-// Debugging: Output the initial values
 echo "<pre>";
 echo "Nom: $nom\n";
 echo "Auteur: $auteur\n";
@@ -30,35 +29,30 @@ echo "Durations: ";
 print_r($durations);
 echo "</pre>";
 
-if (isset($_FILES["img_auteur"]) && $_FILES["img_auteur"]["error"] === 0) {
-    $imgAuteurFileName = basename($_FILES["img_auteur"]["name"]);
-    $imgAuteurTargetFile = $targetDir . $imgAuteurFileName;
-    $imgAuteurFileType = strtolower(pathinfo($imgAuteurTargetFile, PATHINFO_EXTENSION));
 
-    if (!move_uploaded_file($_FILES["img_auteur"]["tmp_name"], $imgAuteurTargetFile)) {
-        echo "Erreur lors du téléchargement de la vignette de l'auteur.";
+function handleFileUpload($fileInputName, $targetDir) {
+    if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]["error"] === 0) {
+        $fileName = basename($_FILES[$fileInputName]["name"]);
+        $targetFile = $targetDir . $fileName;
+        $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        if (move_uploaded_file($_FILES[$fileInputName]["tmp_name"], $targetFile)) {
+            return $fileName; 
+        } else {
+            echo "Erreur lors du téléchargement de l'image pour " . $fileInputName;
+            exit;
+        }
+    } else {
+        echo "Le fichier pour " . $fileInputName . " est manquant ou invalide.";
         exit;
     }
-} else {
-    echo "Le fichier de la vignette de l'auteur est manquant ou invalide.";
-    exit;
 }
 
-if (isset($_FILES["vignette"]) && $_FILES["vignette"]["error"] === 0) {
-    $vignetteFileName = basename($_FILES["vignette"]["name"]);
-    $vignetteTargetFile = $targetDir . $vignetteFileName;
-    $vignetteFileType = strtolower(pathinfo($vignetteTargetFile, PATHINFO_EXTENSION));
 
-    if (!move_uploaded_file($_FILES["vignette"]["tmp_name"], $vignetteTargetFile)) {
-        echo "Erreur lors du téléchargement de la vignette du CD.";
-        exit;
-    }
-} else {
-    echo "Le fichier de la vignette du CD est manquant ou invalide.";
-    exit;
-}
+$imgAuteurFileName = handleFileUpload("img_auteur", $targetDir);
+$vignetteFileName = handleFileUpload("vignette", $targetDir);
+$vignetteLargeFileName = handleFileUpload("vignette_large", $targetDir);
 
-// Check for empty fields
 if (empty($nom) || empty($auteur) || empty($songs) || empty($durations)) {
     echo "Tous les champs sont obligatoires.";
     exit;
@@ -67,13 +61,11 @@ if (empty($nom) || empty($auteur) || empty($songs) || empty($durations)) {
 try {
     $pdo->beginTransaction();
 
-    // Check if author exists
     $stmt = $pdo->prepare("SELECT id FROM " . PREFIX . "Auteur WHERE Nom = :nom");
     $stmt->bindParam(':nom', $auteur);
     $stmt->execute();
     $auteurData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Debugging: Output author data
     echo "Auteur Data: ";
     print_r($auteurData);
 
@@ -85,25 +77,23 @@ try {
         $stmt->bindParam(':vignette', $imgAuteurFileName);
         $stmt->execute();
         $auteur_id = $pdo->lastInsertId(); 
-        echo "New Auteur ID: $auteur_id\n"; // Debugging
+        echo "New Auteur ID: $auteur_id\n";
     }
 
-    // Insert CD details
-    $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Cd (titre, idAuteur, vignette) VALUES (:titre, :idAuteur, :vignette)");
+    $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Cd (titre, idAuteur, vignette, vignette_large) VALUES (:titre, :idAuteur, :vignette, :vignette_large)");
     $stmt->bindParam(':titre', $nom);
     $stmt->bindParam(':idAuteur', $auteur_id);
     $stmt->bindParam(':vignette', $vignetteFileName);
+    $stmt->bindParam(':vignette_large', $vignetteLargeFileName);
     $stmt->execute();
     $cd_id = $pdo->lastInsertId();  
-    echo "CD ID: $cd_id\n"; // Debugging
+    echo "CD ID: $cd_id\n"; 
 
-    // Prepare insert for songs
     $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Chansons (Titre, id_CD, Duree) VALUES (:titre, :id_CD, :duree)");
     for ($i = 0; $i < count($songs); $i++) {
         $song = $songs[$i];
         $duration = $durations[$i];  
 
-        // Debugging: Output each song and duration
         echo "Inserting song: $song with duration: $duration\n";
 
         $stmt->bindParam(':titre', $song);
@@ -115,6 +105,7 @@ try {
     $pdo->commit();
     echo "CD et chansons ajoutés avec succès!";
     header('Location: admin.php');
+    exit;
 } catch (PDOException $e) {
     $pdo->rollBack();
     echo "Erreur lors de l'ajout : " . $e->getMessage();

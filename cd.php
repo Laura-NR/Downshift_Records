@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
     $cd_id = $_GET['id_cd'];
 
-    $sql = "SELECT * FROM " . PREFIX . "cd WHERE id = :id";
+    $sql = "SELECT * FROM " . PREFIX . "Cd WHERE id = :id";
     $pdoStatement = $pdo->prepare($sql);
     $pdoStatement->execute([':id' => $cd_id]);
     $cd = $pdoStatement->fetch(PDO::FETCH_ASSOC);
@@ -60,15 +60,12 @@ if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
     </header>
 
     <main>
-        <h1>Détails du CD: <?= htmlspecialchars($cd['nom']) ?></h1>
+        <h1>Détails du CD: <?= htmlspecialchars($cd['titre']) ?></h1>
 
         <div class="cd-details">
-            <img src="<?= "image/" . $cd['image'] ?>" alt="<?= htmlspecialchars($cd['nom']) ?>" style="max-width:300px;">
-            <p><strong>Nom:</strong> <?= htmlspecialchars($cd['nom']) ?></p>
-            <p><strong>Artiste:</strong> <?= htmlspecialchars($cd['artiste']) ?></p>
-            <p><strong>Date de Sortie:</strong> <?= htmlspecialchars($cd['date_sortie']) ?></p>
-            <p><strong>Genre:</strong> <?= htmlspecialchars($cd['genre']) ?></p>
-            <p><strong>Description:</strong> <?= htmlspecialchars($cd['description']) ?></p>
+            <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($cd['titre']) ?>" style="max-width:300px;">
+            <p><strong>Nom:</strong> <?= htmlspecialchars($cd['titre']) ?></p>
+            <p><strong>Artiste:</strong> <?= htmlspecialchars($cd['idAuteur']) ?></p>
         </div>
 
         <a href="index.php" class="btn btn-primary">Retour aux CDs</a>
