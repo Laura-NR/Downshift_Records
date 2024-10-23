@@ -26,9 +26,6 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body class="container">
-
-
-
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -42,17 +39,19 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
                             <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="recettes.php">Chansons</a>
+                            <a class="nav-link" href="songs.php">Chansons</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="recettes_tableau.php">Artistes/Groupes</a>
+                            <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Déconnexion</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-
 
     <main>
         <h1 class="mycolor">Les CDs</h1>
