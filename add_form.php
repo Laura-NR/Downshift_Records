@@ -46,23 +46,49 @@ if ($_SESSION['username'] !== 'admin') {
     </header>
 
     <main>
-        <form action="process_upload.php">
-            <label for="title">Titre</label>
-            <input type="text" name="title" id="title">
-            <label for="artist">Artiste</label>
-            <input type="text" name="artist" id="artist">
-            <label for="year">Année</label>
-            <input type="number" name="year" id="year">
-            <label for="genre">Genre</label>
-            <input type="text" name="genre" id="genre">
-            <label for="price">Prix</label>
-            <input type="number" name="price" id="price">
-            <label for="cover">Pochette</label>
-            <input type="file" name="cover" id="cover">
-            <label for="chansons">Combien de chansons sont-ils inclus dans le CD ?</label>
-            <input type="number" name="chansons" id="chansons">
-            <button type="submit">Ajouter</button>
+        <h1>Informations sur le nouveau CD</h1>
+        <form action="process_formData.php" method="get">
+            <label for="nom">Nom du CD :</label>
+            <input type="text" name="nom" id="nom">
+            <label for="auteur">Auteur :</label>
+            <input type="text" name="auteur" id="auteur">
+            <label for="vignette">Télécharger la vignete</label>
+            <input type="text" name="vignette" id="vignette">
+            <label for="nom">Nom du CD</label>
+            <input type="text" name="nom" id="nom">
+
+            <h2>Ajouter des chansons</h2>
+            <div id="song-list"></div>
+            <button type="button" onclick="addSongInput()">Ajouter une chanson</button><br>
+            <input type="submit" value="Soumettre">
         </form>
     </main>
+    <footer class="text-body-secondary py-5">
+        <p>&copy; constant("WEBSITE_TITLE") - 'now'|date('Y') </p>
+    </footer>
+    <script>
+        function addSongInput() {
+        // Create a new div to hold the input and label
+        var newDiv = document.createElement("div");
+
+        // Create a new label for the song
+        var newLabel = document.createElement("label");
+        newLabel.innerHTML = "Nom de la chanson :";
+        newLabel.setAttribute("for", "songs[]");
+
+        // Create a new input field for the song
+        var newInput = document.createElement("input");
+        newInput.type = "text";
+        newInput.name = "songs[]"; // This will create an array of song names
+        newInput.id = "songs[]";
+
+        // Append the label and input to the div
+        newDiv.appendChild(newLabel);
+        newDiv.appendChild(newInput);
+
+        // Append the new div to the form where songs are listed
+        document.getElementById("song-list").appendChild(newDiv);
+        }
+    </script>
 </body>
 </html>
