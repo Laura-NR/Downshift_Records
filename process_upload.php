@@ -49,7 +49,23 @@ function handleFileUpload($fileInputName, $targetDir) {
 }
 
 
-$imgAuteurFileName = handleFileUpload("img_auteur", $targetDir);
+$stmt = $pdo->prepare("SELECT id FROM " . PREFIX . "Auteur WHERE Nom = :nom");
+$stmt->bindParam(':nom', $auteur);
+$stmt->execute();
+$auteurData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($auteurData) {
+    $auteur_id = $auteurData['id'];
+} else {
+    $imgAuteurFileName = handleFileUpload("img_auteur", $targetDir);
+    
+    $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Auteur (Nom, Vignette) VALUES (:nom, :vignette)");
+    $stmt->bindParam(':nom', $auteur);
+    $stmt->bindParam(':vignette', $imgAuteurFileName);
+    $stmt->execute();
+    $auteur_id = $pdo->lastInsertId(); 
+}
+
 $vignetteFileName = handleFileUpload("vignette", $targetDir);
 $vignetteLargeFileName = handleFileUpload("vignette_large", $targetDir);
 
@@ -60,25 +76,6 @@ if (empty($nom) || empty($auteur) || empty($songs) || empty($durations)) {
 
 try {
     $pdo->beginTransaction();
-
-    $stmt = $pdo->prepare("SELECT id FROM " . PREFIX . "Auteur WHERE Nom = :nom");
-    $stmt->bindParam(':nom', $auteur);
-    $stmt->execute();
-    $auteurData = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    echo "Auteur Data: ";
-    print_r($auteurData);
-
-    if ($auteurData) {
-        $auteur_id = $auteurData['id'];
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Auteur (Nom, Vignette) VALUES (:nom, :vignette)");
-        $stmt->bindParam(':nom', $auteur);
-        $stmt->bindParam(':vignette', $imgAuteurFileName);
-        $stmt->execute();
-        $auteur_id = $pdo->lastInsertId(); 
-        echo "New Auteur ID: $auteur_id\n";
-    }
 
     $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Cd (titre, idAuteur, vignette, vignette_large) VALUES (:titre, :idAuteur, :vignette, :vignette_large)");
     $stmt->bindParam(':titre', $nom);
