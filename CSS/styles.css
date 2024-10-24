@@ -236,7 +236,7 @@ form {
 input[type="tel"],
 input[type="date"],
 input[type="number"] {
-    padding: 10px; 
+    padding: 6px; 
     border: 1px solid #ccc; 
     border-radius: 5px; 
     font-size: 1rem; 
@@ -254,3 +254,41 @@ label {
 }
 
 
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+}
+
+#login_container, #register_container {
+    max-width: 400px; 
+    margin: 250px auto; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    background-color: #f9f9f9;
+}
+
+#login_container div, #register_container div {
+    display: flex;
+    flex-direction: column;
+}
+
+#login_container .btn, #register_container .btn {
+    background-color: rgb(8, 141, 151); 
+    color: white; 
+    border: none; 
+    border-radius: 30px; 
+    padding: 10px; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+#redirect_to_register {
+    text-decoration: none;
+    color: blue;
+}
