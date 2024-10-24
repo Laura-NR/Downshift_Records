@@ -19,35 +19,31 @@ if ($_SESSION['username'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <title>Ajouter un CD</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="admin.php">CDs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="panier.php">Panier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Déconnexion</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="header_menu">
+            <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
+            <div class="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="panier.php">Panier</a>
+                    </li>
+                    <li class="nav-item" id="logout_btn">
+                        <a class="nav-link" href="logout.php">Déconnexion</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         <h1>Informations sur le nouveau CD</h1>
         <form action="process_upload.php" method="post" enctype="multipart/form-data">
             <div>
@@ -72,8 +68,8 @@ if ($_SESSION['username'] !== 'admin') {
             <input type="submit" value="Soumettre">
         </form>
     </main>
-    <footer class="text-body-secondary py-5">
-        <p>&copy; constant("WEBSITE_TITLE") - 'now'|date('Y') </p>
+    <footer>
+        <p>&copy; <?= constant('WEBSITE_TITLE') ?> - <?= date('Y') ?></p>
     </footer>
     <script>
         function addSongInput() {
