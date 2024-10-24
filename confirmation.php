@@ -7,14 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
-
-$sql = "SELECT * FROM " . PREFIX . "Cd";
-$pdoStatement = $pdo->prepare($sql);
-$pdoStatement->execute();
-$cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -61,27 +53,9 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     </header>
 
     <main>
-        <h1 class="mycolor">Les CDs</h1>
-
-        <div id="zone_cartes" class="row row-cols-3">
-
-            <?php foreach ($cds as $cd) { ?>
-                <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?= "images/" . $cd['vignette'] ?>" class="card-img-top" alt="<?= $cd['titre'] ?>">
-                        <div class="card-body bg-primary">
-                            <h1><?= $cd['titre'] ?></h1>
-                            <h5><?= $cd['prix'] ?></h5>
-                        </div>
-                    </div>
-                </a>
-                <form action="add_cart.php" method="post">
-                    <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
-                    <input type="submit" value="Ajouter au panier">
-                </form>
-            <?php } ?>
-
-        </div>
+        <h1 class="">Confirmation du Payment : </h1>
+        
+        
     </main>
     <footer class="text-body-secondary py-5">
         <p>&copy; <?= constant('WEBSITE_TITLE') ?> - <?= date('Y') ?></p>

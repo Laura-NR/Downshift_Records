@@ -16,6 +16,17 @@ if (isset($_POST['id_cd'])) {
     $cd = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($cd) {
-        # code...
-    }
-}
+        $_SESSION['cart'][$cd_id] = [
+            'titre' => $cd['titre'],
+            'prix' => $cd['prix'],
+            'quantite' => 1,
+            'vignette' => $cd['vignette'],
+        ];
+    } 
+    
+    header('Location: panier.php'); 
+    exit;
+} else {
+    echo "CD not found.";
+    exit;
+} 
