@@ -7,6 +7,10 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
 if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
     $cd_id = $_GET['id_cd'];
 
@@ -69,7 +73,13 @@ if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
             <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($cd['titre']) ?>" style="max-width:300px;">
             <p><strong>Nom:</strong> <?= htmlspecialchars($cd['titre']) ?></p>
             <p><strong>Artiste:</strong> <?= htmlspecialchars($cd['idAuteur']) ?></p>
+            <h5><?= $cd['prix'] ?></h5>
         </div>
+
+        <form action="add_cart.php" method="post">
+            <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
+            <input type="submit" value="Ajouter au panier">
+        </form>
 
         <a href="index.php" class="btn btn-primary">Retour aux CDs</a>
     </main>

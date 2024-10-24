@@ -69,6 +69,9 @@ if ($_SESSION['username'] !== 'admin') {
             <h2>Ajouter des chansons</h2>
             <div id="song-list"></div>
             <button type="button" onclick="addSongInput()">Ajouter une chanson</button><br>
+
+            <label for="prix">Prix du CD</label>
+            <input type="text" name="prix" id="prix">
             <input type="submit" value="Soumettre">
         </form>
     </main>

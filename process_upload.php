@@ -17,6 +17,7 @@ $nom = $_POST['nom'];
 $auteur = $_POST['auteur'];
 $songs = isset($_POST['songs']) ? $_POST['songs'] : [];
 $durations = isset($_POST['durations']) ? $_POST['durations'] : [];
+$prix = $_POST['prix'];
 
 $targetDir = "images/"; 
 
@@ -77,11 +78,12 @@ if (empty($nom) || empty($auteur) || empty($songs) || empty($durations)) {
 try {
     $pdo->beginTransaction();
 
-    $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Cd (titre, idAuteur, vignette, vignette_large) VALUES (:titre, :idAuteur, :vignette, :vignette_large)");
+    $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Cd (titre, idAuteur, vignette, vignette_large, prix) VALUES (:titre, :idAuteur, :vignette, :vignette_large, :prix)");
     $stmt->bindParam(':titre', $nom);
     $stmt->bindParam(':idAuteur', $auteur_id);
     $stmt->bindParam(':vignette', $vignetteFileName);
     $stmt->bindParam(':vignette_large', $vignetteLargeFileName);
+    $stmt->bindParam(':prix', $prix);
     $stmt->execute();
     $cd_id = $pdo->lastInsertId();  
     echo "CD ID: $cd_id\n"; 
