@@ -42,6 +42,9 @@ if ($_SESSION['username'] !== 'admin') {
                             <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="panier.php">Panier</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="logout.php">Déconnexion</a>
                         </li>
                     </ul>
