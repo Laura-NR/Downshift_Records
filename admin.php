@@ -41,9 +41,6 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
                             <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="logout.php">Déconnexion</a>
                         </li>
                     </ul>

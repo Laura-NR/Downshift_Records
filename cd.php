@@ -52,9 +52,6 @@ if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
                             <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="panier.php">Panier</a>
                         </li>
                         <li class="nav-item">

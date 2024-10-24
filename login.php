@@ -1,3 +1,5 @@
+<?php require_once 'include.php'; ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="CSS/styles.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
   <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-  <title>Downshift Records</title>
+  <title><?= constant('WEBSITE_TITLE') ?></title>
 </head>
 
 <body class="container">
@@ -25,9 +27,6 @@
           id="email"
           name="email"
           aria-describedby="emailHelp" />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
-        </div>
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Mot de Passe</label>
