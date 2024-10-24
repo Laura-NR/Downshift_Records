@@ -78,7 +78,7 @@ header {
     color: rgb(71, 71, 71);
 }
 
-#zone_cds {
+.zone_cds {
     margin-bottom: 70px;
     display: flex;
     flex-direction: column;
@@ -291,4 +291,15 @@ input[type="password"] {
 #redirect_to_register {
     text-decoration: none;
     color: blue;
+}
+
+#ajout_container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#ajout_cd {
+    display: inline-block;
+    text-decoration: none;
+    margin: 40px 5px;
 }

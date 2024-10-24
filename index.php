@@ -50,7 +50,7 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
     <main class="container">
         <h1 class="page_title">Voici notre sélection de CD's :</h1>
 
-        <div id="zone_cds">
+        <div class="zone_cds">
 
             <?php foreach ($cds as $cd) { ?>
                 <div class="div_cd">

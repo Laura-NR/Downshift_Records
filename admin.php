@@ -24,52 +24,50 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <title>Admin dashboard - <?= constant('WEBSITE_TITLE') ?></title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout.php">Déconnexion</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="header_menu">
+            <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
+            <div class="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="panier.php">Panier</a>
+                    </li>
+                    <li class="nav-item" id="logout_btn">
+                        <a class="nav-link" href="logout.php">Déconnexion</a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
 
-
-    <main>
+    <main class="container">
         <h1 class="mycolor">Les CDs</h1>
-
-        <a href="add_form.php">Ajouter un CD</a>
-
-        <div id="zone_cartes" class="row row-cols-3">
+        <div id="ajout_container">
+            <a href="add_form.php" class="ajout_btn" id="ajout_cd">Ajouter un CD</a>
+        </div>
+        <div class="zone_cds">
 
             <?php foreach ($cds as $cd) { ?>
-                <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
-                    <div class="card" style="width: 18rem;">
+                <div class="div_cd">
+                    <a href="cd.php?id_cd=<?= $cd['id'] ?>" class="col mb-3">
                         <img src="<?= "images/" . $cd['vignette'] ?>" class="card-img-top" alt="<?= $cd['titre'] ?>">
-                        <div class="card-body bg-primary">
-                            <h5><?= $cd['titre'] ?></h5>
-                        </div>
+                    </a>
+                    <div class="info">
+                        <h1><?= $cd['titre'] ?></h1>
                     </div>
-                </a>
-                <form action="delete_cd.php" method="post">
-                    <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
-                    <input type="submit" value="Supprimer CD">
-                </form>
+                    <form action="delete_cd.php" method="post">
+                        <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
+                        <input type="submit" value="Supprimer CD">
+                    </form>
+                </div>
             <?php } ?>
 
         </div>
