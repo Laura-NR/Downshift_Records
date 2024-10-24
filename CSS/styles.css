@@ -166,3 +166,64 @@ ul {
     margin: 40px auto; 
     padding: 8px 15px;
 }
+
+table {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin: 40px 0; 
+    font-size: 1.2rem;
+}
+
+thead {
+    background-color: rgb(8, 134, 151); 
+    color: white; 
+}
+
+th, td {
+    padding: 12px; 
+    text-align: center; 
+    border: 1px solid #ddd; 
+}
+
+#img_title {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+}
+
+#img_title img {
+    margin-right: 50px;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+tbody tr:hover {
+    background-color: rgba(192, 192, 255, 0.192); 
+}
+
+input[type="submit"] {
+    background-color: rgb(8, 141, 151); 
+    color: white; 
+    border: none; 
+    border-radius: 30px; 
+    padding: 8px 12px; 
+    cursor: pointer; 
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(51, 51, 243); 
+}
+
+#total_payer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 50px;
+}
+
+#total_payer h3 {
+    font-size: 1.8rem;
+}
+
