@@ -68,13 +68,12 @@ if (isset($_GET['id_auteur']) && is_numeric($_GET['id_auteur'])) {
         <h1>Informations sur l'auteur: <?= htmlspecialchars($auteur['nom']) ?></h1>
 
         <div class="autres-albums">
-            <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($cd['titre']) ?>" style="max-width:300px;">
-            <p><strong>Nom:</strong> <?= htmlspecialchars($cd['titre']) ?></p>
-            <p><strong>Artiste:</strong> <?= htmlspecialchars($cd['idAuteur']) ?></p>
+            <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($auteur['nom']) ?>" style="max-width:300px;">
+            <p><strong>Nom:</strong> <?= htmlspecialchars($cd['nom']) ?></p>
         </div>
 
         <form action="add_cart.php" method="post">
-            <input type="hidden" name="id_cd" value="<?= $cd['id'] ?>">
+            <input type="hidden" name="id_auteur" value="<?= $auteur['vignette'] ?>">
             <input type="submit" value="Ajouter au panier">
         </form>
 
