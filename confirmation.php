@@ -21,7 +21,7 @@ if (isset($_POST['total'])) {
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <title>{{ constant('${WEBSITE_TITLE}') }}</title>
+    <title><?= constant('WEBSITE_TITLE') ?></title>
 </head>
 
 <body class="container">
