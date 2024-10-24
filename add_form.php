@@ -26,17 +26,14 @@ if ($_SESSION['username'] !== 'admin') {
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">{{ constant('${WEBSITE_TITLE}') }}</a>
+                <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="songs.php">Chansons</a>
+                            <a class="nav-link active" aria-current="page" href="admin.php">CDs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
