@@ -44,7 +44,7 @@ if ($_SESSION['username'] !== 'admin') {
     </header>
 
     <main class="container">
-        <h1>Informations sur le nouveau CD</h1>
+        <h1 class="page_title">Informations sur le nouveau CD</h1>
         <form action="process_upload.php" method="post" enctype="multipart/form-data">
             <div>
                 <label for="auteur">Auteur :</label>
