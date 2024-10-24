@@ -25,6 +25,24 @@ if (isset($_GET['id_auteur']) && is_numeric($_GET['id_auteur'])) {
     exit;
 }
 
+
+if (isset($_GET['id_chanson']) && is_numeric($_GET['id_chanson'])) {
+    $chanson_id = $_GET['id_chanson'];
+
+    $sql = "SELECT * FROM " . PREFIX . "Chansons WHERE id = :id";
+    $pdoStatement = $pdo->prepare($sql);
+    $pdoStatement->execute([':id' => $chanson_id]);
+    $chanson = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+
+    if (!$chanson) {
+        echo "Chansons not found.";
+        exit;
+    }
+} else {
+    header('Location: index.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +83,7 @@ if (isset($_GET['id_auteur']) && is_numeric($_GET['id_auteur'])) {
     </header>
 
     <main>
-        <h1>Informations sur l'auteur: <?= htmlspecialchars($auteur['nom']) ?></h1>
+        <h1>Auteurs: <?= htmlspecialchars($auteur['nom']) ?></h1>
 
         <div class="autres-albums">
             <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($auteur['nom']) ?>" style="max-width:300px;">
