@@ -30,10 +30,7 @@ if ($_SESSION['username'] !== 'admin') {
             <div class="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="panier.php">Panier</a>
+                        <a class="nav-link active" aria-current="page" href="admin.php">CDs</a>
                     </li>
                     <li class="nav-item" id="logout_btn">
                         <a class="nav-link" href="logout.php">Déconnexion</a>
@@ -43,21 +40,31 @@ if ($_SESSION['username'] !== 'admin') {
         </nav>
     </header>
 
-    <main class="container">
+    <main class="container" id="form_container">
         <h1 class="page_title">Informations sur le nouveau CD</h1>
         <form action="process_upload.php" method="post" enctype="multipart/form-data">
-            <div>
-                <label for="auteur">Auteur :</label>
-                <input type="text" name="auteur" id="auteur">
-                <label for="img_auteur">Vignette de l'Auteur :</label>
-                <input type="file" name="img_auteur" id="img_auteur">
+            <div class="form_row">
+                <div>
+                    <label for="auteur">Auteur :</label>
+                    <input type="text" name="auteur" id="auteur">
+                </div>
+                <div>
+                    <label for="img_auteur">Vignette de l'Auteur :</label>
+                    <input type="file" name="img_auteur" id="img_auteur">
+                </div>
             </div>
             <label for="nom">Nom du CD :</label>
             <input type="text" name="nom" id="nom">
-            <label for="vignette">Télécharger la vignete (image plus petite) :</label>
-            <input type="file" name="vignette" id="vignette">
-            <label for="vignette_large">Télécharger l'aperçu du CD (image plus large) :</label>
-            <input type="file" name="vignette_large" id="vignette_large">
+            <div class="form_row">
+                <div>
+                    <label for="vignette">Télécharger la vignete (Image plus petite) :</label>
+                    <input type="file" name="vignette" id="vignette">
+                </div>
+                <div>
+                    <label for="vignette_large">Télécharger l'aperçu du CD (Image plus large) :</label>
+                    <input type="file" name="vignette_large" id="vignette_large">
+                </div>
+            </div>
 
             <h2>Ajouter des chansons</h2>
             <div id="song-list"></div>

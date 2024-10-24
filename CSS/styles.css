@@ -54,10 +54,6 @@ header {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.nav-link.active {
-    border-bottom: 2px solid white; 
-}
-
 #logout_btn {
     background-color: rgb(158, 24, 24);
     padding: 8px 15px;
@@ -302,4 +298,62 @@ input[type="password"] {
     display: inline-block;
     text-decoration: none;
     margin: 40px 5px;
+}
+
+#form_container {
+    max-width: 900px; 
+    margin: 80px auto; 
+    padding: 20px;
+    background-color: #f9f9f9; 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#form_container .form_row {
+    display: flex;
+    justify-content: space-between;
+}
+
+#form_container .form_row div {
+    flex: 1;
+    margin-right: 10px; 
+}
+
+#form_container .form_row label {
+    font-size: 1rem; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+    display: block; 
+}
+
+#form_container .form_row div:last-child {
+    margin-right: 0; 
+}
+
+#form_container input[type="text"],
+#form_container input[type="file"] {
+    width: 100%; 
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+#form_container button, input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgb(8, 141, 151); 
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#song-list {
+    margin-bottom: 20px;
 }

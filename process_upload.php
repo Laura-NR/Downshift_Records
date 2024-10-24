@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 require_once 'include.php';
 
 if (!isset($_SESSION['user_id'])) {
@@ -19,16 +20,7 @@ $songs = isset($_POST['songs']) ? $_POST['songs'] : [];
 $durations = isset($_POST['durations']) ? $_POST['durations'] : [];
 $prix = $_POST['prix'];
 
-$targetDir = "images/"; 
-
-echo "<pre>";
-echo "Nom: $nom\n";
-echo "Auteur: $auteur\n";
-echo "Songs: ";
-print_r($songs);
-echo "Durations: ";
-print_r($durations);
-echo "</pre>";
+$targetDir = "images/";
 
 
 function handleFileUpload($fileInputName, $targetDir) {
@@ -85,8 +77,7 @@ try {
     $stmt->bindParam(':vignette_large', $vignetteLargeFileName);
     $stmt->bindParam(':prix', $prix);
     $stmt->execute();
-    $cd_id = $pdo->lastInsertId();  
-    echo "CD ID: $cd_id\n"; 
+    $cd_id = $pdo->lastInsertId(); 
 
     $stmt = $pdo->prepare("INSERT INTO " . PREFIX . "Chansons (Titre, id_CD, Duree) VALUES (:titre, :id_CD, :duree)");
     for ($i = 0; $i < count($songs); $i++) {
@@ -105,6 +96,7 @@ try {
     echo "CD et chansons ajoutés avec succès!";
     header('Location: admin.php');
     exit;
+    ob_end_flush(); 
 } catch (PDOException $e) {
     $pdo->rollBack();
     echo "Erreur lors de l'ajout : " . $e->getMessage();

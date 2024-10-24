@@ -35,10 +35,7 @@ $cds = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
             <div class="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="panier.php">Panier</a>
+                        <a class="nav-link active" aria-current="page" href="admin.php">CDs</a>
                     </li>
                     <li class="nav-item" id="logout_btn">
                         <a class="nav-link" href="logout.php">Déconnexion</a>
