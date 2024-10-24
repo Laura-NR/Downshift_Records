@@ -20,28 +20,23 @@ if (isset($_GET['id_auteur']) && is_numeric($_GET['id_auteur'])) {
         echo "Auteur not found.";
         exit;
     }
-} else {
-    header('Location: index.php');
-    exit;
-}
+} 
 
 
 if (isset($_GET['id_chanson']) && is_numeric($_GET['id_chanson'])) {
     $chanson_id = $_GET['id_chanson'];
 
-    $sql = "SELECT * FROM " . PREFIX . "Chansons WHERE id = :id";
-    $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement->execute([':id' => $chanson_id]);
-    $chanson = $pdoStatement->fetch(PDO::FETCH_ASSOC);
+    $sqlChansons = "SELECT * FROM " . PREFIX . "Chansons WHERE auteur_id = :auteur_id";
+    $pdoStatementChansons = $pdo->prepare($sqlChansons);
+    $pdoStatementChansons->execute([':auteur_id' => $auteur_id]);
+    $chansons = $pdoStatementChansons->fetchAll(PDO::FETCH_ASSOC);
+} 
 
-    if (!$chanson) {
-        echo "Chansons not found.";
-        exit;
-    }
-} else {
+else {
     header('Location: index.php');
     exit;
 }
+
 
 ?>
 
@@ -51,7 +46,7 @@ if (isset($_GET['id_chanson']) && is_numeric($_GET['id_chanson'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= htmlspecialchars($auteur['nom']) ?> - Chansons</title>
 </head>
 
 <body>
@@ -85,10 +80,17 @@ if (isset($_GET['id_chanson']) && is_numeric($_GET['id_chanson'])) {
     <main>
         <h1>Auteurs: <?= htmlspecialchars($auteur['nom']) ?></h1>
 
-        <div class="autres-albums">
-            <img src="<?= "images/" . $cd['vignette_large'] ?>" alt="<?= htmlspecialchars($auteur['nom']) ?>" style="max-width:300px;">
-            <p><strong>Nom:</strong> <?= htmlspecialchars($cd['nom']) ?></p>
-        </div>
+        <h2>Chansons</h2>
+        <ul>
+            <?php if ($chansons): ?>
+                <?php foreach ($chansons as $chanson): ?>
+                    <li><?= htmlspecialchars($chanson['nom']) ?></li>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <li>Aucune chanson trouvée pour cet auteur.</li>
+            <?php endif; ?>
+        </ul>
+
 
         <form action="add_cart.php" method="post">
             <input type="hidden" name="id_auteur" value="<?= $auteur['vignette'] ?>">
