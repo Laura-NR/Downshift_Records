@@ -21,14 +21,14 @@ $total = 0;
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <title>{{ constant('${WEBSITE_TITLE}') }}</title>
+    <title><?= constant('WEBSITE_TITLE') ?></title>
 </head>
 
 <body class="container">
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">{{ constant('${WEBSITE_TITLE}') }}</a>
+                <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,9 +36,6 @@ $total = 0;
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="songs.php">Chansons</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
@@ -100,6 +97,7 @@ $total = 0;
             <h3>Total à payer: <?= number_format($total, 2) ?> €</h3>
 
             <form action="confirmation.php" method="post">
+                <input type="hidden" name="total" value="<?= number_format($total, 2) ?>">
                 <input type="submit" value="Confirmer le payment">
             </form>
 

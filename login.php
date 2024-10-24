@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/styles.css">
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- <link rel='stylesheet' type='text/css' href='style.css'> -->
-    <title>WEBSITE_TITLE</title>
+    <title><?= constant('WEBSITE_TITLE') ?></title>
 </head>
 <body class="container">
     <main>
@@ -36,7 +36,7 @@
 </form>
     </main>
     <footer class="text-body-secondary py-5">
-    <p>&copy; constant("WEBSITE_TITLE") -  'now'|date('Y') </p>
+    <p>&copy; <?= constant('WEBSITE_TITLE') ?> - <?= date('Y') ?></p>
     </footer>
 
 </body>

@@ -42,7 +42,7 @@ if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">{{ constant('${WEBSITE_TITLE}') }}</a>
+                <a class="navbar-brand" href="index.php"><?= constant('WEBSITE_TITLE') ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -50,9 +50,6 @@ if (isset($_GET['id_cd']) && is_numeric($_GET['id_cd'])) {
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">CDs</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="songs.php">Chansons</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="auteurs.php">Artistes/Groupes</a>
